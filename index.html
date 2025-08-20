@@ -75,7 +75,7 @@
 
     /* Hero refresh */
     header.hero{position:relative; overflow:hidden; isolation:isolate; padding:80px 18px 48px}
-    .hero .container{max-width:1200px;margin:auto;display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center}
+    .hero .container{max-width:1200px;margin:auto;display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:start}
     .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid rgba(0,0,0,.08);background:rgba(255,255,255,.6);backdrop-filter:blur(6px)}
     h1{font-size:clamp(30px,4.4vw,56px);line-height:1.06;margin:10px 0 12px}
     .lead{font-size:clamp(16px,1.8vw,20px);color:rgb(var(--muted));max-width:60ch}
@@ -83,7 +83,7 @@
     .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:14px;cursor:pointer;border:1px solid rgba(0,0,0,.09); text-decoration:none; font-weight:700;background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.84));box-shadow:var(--shadow)}
     .btn.primary{color:white;border-color:transparent;background:linear-gradient(135deg, rgb(var(--brand-a)), rgb(var(--brand-b)))}
     .btn:hover{transform:translateY(-1px)}
-    .hero-art{position:relative; height:100%; min-height:280px; border-radius:22px; overflow:hidden; box-shadow:var(--shadow)}
+    .hero-art{position:relative; height:100%; min-height:280px; border-radius:22px; overflow:hidden; box-shadow:var(--shadow); display:grid; place-items:center; align-self:start; justify-self:end }
     .hero-art:before{content:""; position:absolute; inset:0; background: radial-gradient(600px 300px at 10% 10%, rgba(var(--brand-a),.22), transparent 60%), radial-gradient(700px 400px at 80% 30%, rgba(255,255,255,.25), transparent 60%), linear-gradient(135deg, rgba(var(--brand-a),.25), rgba(var(--brand-b),.25)); filter:blur(30px)}
 
     /* Sections */
@@ -178,6 +178,19 @@
     section .section-title,
     #weeks .lead,
     footer { color: rgba(255,255,255,.92); }
+      /* Hex avatar */
+    .avatar{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+    .avatar-hex{width:116px;aspect-ratio:1;position:relative}
+    .avatar-hex::before{content:"";position:absolute;inset:-6px;background:#fff;clip-path:polygon(25% 6.7%,75% 6.7%,100% 50%,75% 93.3%,25% 93.3%,0% 50%);filter:drop-shadow(0 10px 18px rgba(0,0,0,.22));border-radius:12px}
+    .avatar-hex img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;clip-path:polygon(25% 6.7%,75% 6.7%,100% 50%,75% 93.3%,25% 93.3%,0% 50%);border-radius:12px}
+    @media (max-width:980px){.avatar{justify-content:center}}
+    /* Ensure good contrast on hero next to burgundy */
+    .avatar .caption{color:#fff;font-weight:700;letter-spacing:.3px}
+      /* Center avatar inside hero card */
+    .hero-avatar{ position:relative; z-index:2; margin:0 }
+    .hero-avatar .avatar-hex{ width:180px }
+    @media (max-width:980px){ .hero-avatar .avatar-hex{ width:140px } }
+    .avatar-hex img{ object-position:50% 18% }
   </style>
 </head>
 <body>
@@ -225,6 +238,9 @@
         <div class="blob a"></div>
         <div class="blob b"></div>
         <div class="blob c"></div>
+        <div class="avatar hero-avatar" aria-label="Portrait centered">
+          <div class="avatar-hex"><img src="https://github.com/ambuehlb/graph-ai-portfolio/blob/main/eVisa_portrait.jpg?raw=true" alt="Portrait of Benjamin Ambühl — hexagonal avatar" loading="eager" decoding="async"></div>
+        </div>
       </div>
     </div>
   </header>
