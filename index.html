@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Benjamin Ambühl — Generative AI for Work & Research</title>
+  <meta name="description" content="One‑page portfolio for the Generative AI for Work & Research course: about me, course overview, and weekly submissions." />
+  <style>
+    :root{
+      --bg-1: 255, 247, 237;        /* warm base */
+      --bg-2: 237, 244, 255;        /* cool base */
+      --ink: 20, 24, 35;            /* primary text */
+      --muted: 88, 96, 116;         /* secondary text */
+      --brand-a: 62, 101, 254;      /* electric blue */
+      --brand-b: 127, 86, 217;      /* violet */
+      --brand-c: 0, 184, 150;       /* teal */
+      --card: 255, 255, 255;        /* card bg */
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(20,24,35,.08), 0 2px 10px rgba(20,24,35,.05);
+      /* pastel tile palette */
+      --t1: 245, 229, 149; /* sand */
+      --t2: 182, 207, 214; /* seafoam */
+      --t3: 210, 206, 250; /* lavender */
+      --t4: 203, 233, 207; /* mint */
+      --t5: 233, 215, 186; /* wheat */
+      --t6: 193, 222, 255; /* sky */
+      --t7: 240, 198, 203; /* blush */
+      --t8: 209, 222, 210; /* sage */
+    }
+
+    /* Dark mode vars */
+    body.dark{
+      --bg-1: 18, 18, 24;
+      --bg-2: 12, 12, 18;
+      --ink: 235, 238, 245;
+      --muted: 156, 162, 181;
+      --card: 28, 30, 38;
+      --shadow: 0 10px 30px rgba(0,0,0,.45), 0 2px 10px rgba(0,0,0,.35);
+    
+      background: linear-gradient(135deg, #12040a 0%, #2a0a12 45%, #3a0f19 100%);
+    }
+
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:rgb(var(--ink));
+      font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(1000px 600px at -10% -10%, rgba(255,255,255,.06), transparent 60%),
+        radial-gradient(900px 500px at 110% 0%, rgba(255,255,255,.04), transparent 60%),
+        linear-gradient(135deg, #4a0016 0%, #800020 45%, #b71c45 100%);
+      min-height:100%;
+    }
+
+    /* Thin top bar inspired by editorial sites */
+    .nav{position:sticky; top:0; z-index:70; backdrop-filter:saturate(130%) blur(8px); background:#fff; border-bottom:1px solid rgba(0,0,0,.06)}
+    .nav-inner{max-width:1200px;margin:auto;display:grid;grid-template-columns:40px 1fr 40px;align-items:center;padding:10px 16px}
+    .logo{justify-self:center;font-weight:800;letter-spacing:.4px}
+    .logo b{background:linear-gradient(90deg, rgb(var(--brand-a)), rgb(var(--brand-b)) 60%, rgb(var(--brand-c))); -webkit-background-clip:text; background-clip:text; color:transparent}
+    .hamburger, .mode-toggle{appearance:none;border:0;background:transparent;padding:6px;border-radius:10px;cursor:pointer;display:inline-grid;place-items:center}
+    .hamburger:focus-visible, .mode-toggle:focus-visible{outline:2px solid rgba(var(--brand-a),.6)}
+    .hamburger svg, .mode-toggle svg{width:20px;height:20px}
+
+    /* Slide‑in menu */
+    .menu{position:fixed; inset:0 auto 0 0; width:320px; transform:translateX(-100%); transition:transform .45s cubic-bezier(.2,.8,.2,1); background:#0b0b0e; color:#fff; z-index:80; display:flex; flex-direction:column}
+    body.menu-open .menu{transform:translateX(0)}
+    .menu header{display:flex;align-items:center;gap:8px;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.08)}
+    .menu .links{padding:14px 16px; display:grid; gap:10px}
+    .menu a{color:#fff;text-decoration:none;font-weight:600}
+    .menu a:hover{text-decoration:underline}
+    .menu .search{margin-top:auto;padding:14px 16px;border-top:1px solid rgba(255,255,255,.08)}
+    .menu input{width:100%;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff}
+    .scrim{position:fixed;inset:0;background:rgba(0,0,0,.3);opacity:0;visibility:hidden;transition:.3s;z-index:75}
+    body.menu-open .scrim{opacity:1;visibility:visible}
+
+    /* Hero refresh */
+    header.hero{position:relative; overflow:hidden; isolation:isolate; padding:80px 18px 48px}
+    .hero .container{max-width:1200px;margin:auto;display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid rgba(0,0,0,.08);background:rgba(255,255,255,.6);backdrop-filter:blur(6px)}
+    h1{font-size:clamp(30px,4.4vw,56px);line-height:1.06;margin:10px 0 12px}
+    .lead{font-size:clamp(16px,1.8vw,20px);color:rgb(var(--muted));max-width:60ch}
+    .cta{display:flex;gap:12px;margin-top:22px}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:14px;cursor:pointer;border:1px solid rgba(0,0,0,.09); text-decoration:none; font-weight:700;background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.84));box-shadow:var(--shadow)}
+    .btn.primary{color:white;border-color:transparent;background:linear-gradient(135deg, rgb(var(--brand-a)), rgb(var(--brand-b)))}
+    .btn:hover{transform:translateY(-1px)}
+    .hero-art{position:relative; height:100%; min-height:280px; border-radius:22px; overflow:hidden; box-shadow:var(--shadow)}
+    .hero-art:before{content:""; position:absolute; inset:0; background: radial-gradient(600px 300px at 10% 10%, rgba(var(--brand-a),.22), transparent 60%), radial-gradient(700px 400px at 80% 30%, rgba(255,255,255,.25), transparent 60%), linear-gradient(135deg, rgba(var(--brand-a),.25), rgba(var(--brand-b),.25)); filter:blur(30px)}
+
+    /* Sections */
+    section{padding:64px 18px}
+    .container{max-width:1200px;margin:auto}
+    .section-title{font-size:clamp(22px,2.6vw,36px);margin:0 0 10px}
+    .section-kicker{color:rgb(var(--muted));text-transform:uppercase;font-size:12px;letter-spacing:.2em}
+
+    .card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:22px;box-shadow:var(--shadow)}
+
+    /* About grid */
+    .about-grid{display:grid;grid-template-columns:1fr 1fr; gap:18px}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid rgba(0,0,0,.08);background:rgba(255,255,255,.6);margin:4px 6px 0 0;font-size:13px}
+
+    /* Modules */
+    .modules{display:grid;grid-template-columns:1fr 1fr; gap:18px}
+    details.module{border:1px solid rgba(0,0,0,.06);border-radius:18px;background:#fff;backdrop-filter:blur(6px)}
+    .module summary{cursor:pointer;list-style:none;padding:16px 18px;font-weight:700;display:flex;align-items:center;gap:12px}
+    .module summary::-webkit-details-marker{display:none}
+    .module .body{padding:0 18px 16px;color:rgb(var(--muted))}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+    .chip{font-size:12px;border:1px solid rgba(0,0,0,.08);padding:6px 10px;border-radius:999px;background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.7))}
+
+    /* Features & rubric */
+    .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:12px}
+    .feature{padding:18px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.86));border:1px solid rgba(0,0,0,.06)}
+    .rubric{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+    /* Mosaic weeks inspired by the screenshot */
+    .weeks{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+    .week{position:relative;display:flex;flex-direction:column;justify-content:space-between;padding:26px;border-radius:20px;border:1px solid rgba(0,0,0,.08);box-shadow:var(--shadow)}
+    .week h4{margin:0 0 8px;font-size:clamp(18px,2vw,22px)}
+    .week p{margin:0 0 10px;color:rgb(var(--muted))}
+    .week a{align-self:flex-start}
+    .flag{position:absolute;right:12px;top:12px;transform:rotate(-12deg);font-size:11px;padding:6px 8px;border-radius:8px;background:#111;color:#fff}
+
+    .weeks .week:nth-child(1){background:rgb(var(--t6))}
+    .weeks .week:nth-child(2){background:rgb(var(--t1))}
+    .weeks .week:nth-child(3){background:rgb(var(--t5))}
+    .weeks .week:nth-child(4){background:rgb(var(--t2))}
+    .weeks .week:nth-child(5){background:rgb(var(--t3))}
+    .weeks .week:nth-child(6){background:rgb(var(--t8))}
+    .weeks .week:nth-child(7){background:rgb(var(--t7))}
+    .weeks .week:nth-child(8){background:rgb(var(--t4))}
+
+    /* Footer */
+    footer{padding:52px 18px 64px; text-align:center; color:rgb(var(--muted))}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero .container{grid-template-columns:1fr}
+      .about-grid, .modules, .rubric{grid-template-columns:1fr}
+      .feature-grid{grid-template-columns:1fr 1fr}
+      .weeks{grid-template-columns:1fr}
+    }
+    @media (max-width: 560px){
+      .feature-grid{grid-template-columns:1fr}
+    }
+      /* Hero text on burgundy */
+    .hero h1{color:#fff}
+    .hero .lead{color:rgba(255,255,255,.92)}
+      /* Header elevation on scroll */
+    .nav.elevated{ box-shadow:0 10px 30px rgba(0,0,0,.08); }
+
+    /* Module accordions: outlined with chevrons */
+    details.module{ overflow:hidden; }
+    .module summary{ position:relative; }
+    .module summary::after{ content:'▸'; margin-left:auto; opacity:.6; transition: transform .25s ease, opacity .2s; font-size:18px }
+    details.module[open] > summary::after{ content:'▾'; opacity:.9 }
+    .module summary:hover{ background:rgba(0,0,0,.03) }
+      /* Header elevation on scroll */
+    .nav.elevated{ box-shadow:0 10px 30px rgba(0,0,0,.08); }
+
+    /* Module accordions: outlined with chevrons */
+    details.module{ overflow:hidden; }
+    .module summary{ position:relative; }
+    .module summary::after{ content:'▸'; margin-left:auto; opacity:.6; transition: transform .25s ease, opacity .2s; font-size:18px }
+    details.module[open] > summary::after{ content:'▾'; opacity:.9 }
+    .module summary:hover{ background:rgba(0,0,0,.03) }
+
+    /* ——— Adjustments requested ——— */
+    /* More breathing room in snow‑white tiles */
+    .card.pad{ padding:32px 34px; }
+    .card.pad > * + *{ margin-top:14px; }
+    .feature{ padding:22px; }
+    details.module > summary{ padding:20px 22px; }
+    details.module .body{ padding:0 22px 20px; }
+    details.module .body > * + *{ margin-top:10px; }
+
+    /* Replace grey text with white on burgundy background elements */
+    section .section-kicker,
+    section .section-title,
+    #weeks .lead,
+    footer { color: rgba(255,255,255,.92); }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Primary">
+    <div class="nav-inner">
+      <button class="hamburger" aria-label="Open menu" id="openMenu" title="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <div class="logo" aria-label="Site title"><b>Benjamin Ambühl</b> — Generative AI</div>
+      <button class="mode-toggle" id="modeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg id="modeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      </button>
+    </div>
+  </nav>
+  <aside class="menu" id="menu" aria-label="Menu">
+    <header>
+      <button class="hamburger" aria-label="Close menu" id="closeMenu" title="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <strong style="margin-left:6px">Menu</strong>
+    </header>
+    <nav class="links">
+      <a href="#about" onclick="closeMenu()">About me</a>
+      <a href="#course" onclick="closeMenu()">About the course</a>
+      <a href="#weeks" onclick="closeMenu()">Weekly submissions</a>
+      <a href="https://www.linkedin.com/in/benjaminambuehl" target="_blank" rel="noopener" onclick="closeMenu()">LinkedIn ↗</a>
+    </nav>
+    <div class="search">
+      <input type="search" placeholder="Suchen… (coming soon)" aria-label="Search" disabled>
+    </div>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+
+  <header class="hero" role="banner">
+    <div class="container">
+      <div>
+        <h1>Generative AI for Work & Research</h1>
+        <p class="lead">A curated 8‑week live cohort where I explore practical GenAI skills for automation, research workflows, and communication.</p>
+        <div class="cta">
+          <a class="btn primary" href="#weeks">View weekly submissions</a>
+          <a class="btn" href="#course">Explore the course</a>
+        </div>
+      </div>
+      <div class="hero-art card">
+        <div class="blob a"></div>
+        <div class="blob b"></div>
+        <div class="blob c"></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ABOUT ME -->
+    <section id="about" aria-labelledby="about-title">
+      <div class="container">
+        <p class="section-kicker">Profile</p>
+        <h2 class="section-title" id="about-title">About me</h2>
+        <div class="about-grid">
+          <div class="card pad">
+            <h3 style="margin-top:0;margin-bottom:6px">Benjamin Adrian Ambühl, Dr. phil.</h3>
+            <p style="margin:0 0 6px;color:rgb(var(--muted))">Project lead & lecturer focused on behavioural change in organizations.</p>
+            <p>I am a postdoctoral researcher and lecturer at the ZHAW School of Management and Law (Institute of Business Information Technology). I lead research and education projects in large organizations, coordinate academic exchanges and workshops, teach in postgraduate programs, and supervise student theses and clinic projects.</p>
+            <div class="chips" aria-label="Highlights">
+              <span class="chip">Designed cybersecurity e‑learning for a major finance org</span>
+              <span class="chip">Led hybrid (blended) university seminars end‑to‑end</span>
+              <span class="chip">Co‑organized international Summer Schools (UZH & ZHAW)</span>
+              <span class="chip">Managed research teams up to 30 people</span>
+              <span class="chip">Implementation‑science project management</span>
+            </div>
+            <div style="margin-top:14px">
+              <a class="btn" href="https://www.linkedin.com/in/benjaminambuehl" target="_blank" rel="noopener">Connect on LinkedIn</a>
+            </div>
+          </div>
+          <div class="card pad">
+            <h4 style="margin:0 0 10px">Skills & Tools</h4>
+            <p class="muted" style="margin-top:0;color:rgb(var(--muted))">(selection)</p>
+            <div>
+              <span class="pill">GenAI for research & work</span>
+              <span class="pill">R</span>
+              <span class="pill">SPSS</span>
+              <span class="pill">Survey tools (ODK, Qualtrics)</span>
+              <span class="pill">MPlus</span>
+              <span class="pill">MaxQDA</span>
+              <span class="pill">Data visualization</span>
+              <span class="pill">Teaching & curriculum design</span>
+            </div>
+            <h4 style="margin:18px 0 10px">Education</h4>
+            <ul style="margin:0;padding-left:18px">
+              <li>Dr.phil., Environmental & Health Psychology — University of Bern</li>
+              <li>Professional Certificate, Systems Thinking — MIT</li>
+              <li>Certificate, Generative AI for Research & Work Productivity — University of Geneva</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT THE COURSE -->
+    <section id="course" aria-labelledby="course-title">
+      <div class="container">
+        <p class="section-kicker">Course</p>
+        <h2 class="section-title" id="course-title">About the course</h2>
+        <div class="card pad" style="margin-bottom:16px">
+          <p><strong>Generative AI for Work & Research</strong> is a hands‑on, guided program covering websites & documents, AI‑assisted data analysis, text analysis for research, custom chatbots, task automation, and communication & outreach — culminating in a capstone showcase.</p>
+          <div class="feature-grid" aria-label="Bootcamp features">
+            <div class="feature">Weekly live workshops</div>
+            <div class="feature">Live help sessions</div>
+            <div class="feature">Private community forums</div>
+            <div class="feature">Personalized feedback</div>
+            <div class="feature">Capstone coaching</div>
+            <div class="feature">Shareable certificate</div>
+          </div>
+        </div>
+
+        <div class="modules" aria-label="Modules">
+          <details class="module" open>
+            <summary>Module 1 — Websites, Documents & Presentations</summary>
+            <div class="body">
+              Learn how LLMs work and generate high‑quality text for papers or grants; build simple research websites; structure documents with Markdown; and design clear, AI‑assisted presentations.
+              <div class="chips">
+                <span class="chip">LLM overview</span>
+                <span class="chip">Markdown / LaTeX / HTML</span>
+                <span class="chip">No‑code sites</span>
+              </div>
+            </div>
+          </details>
+          <details class="module">
+            <summary>Module 2 — AI‑Automated Data Analysis</summary>
+            <div class="body">
+              Use tools like Code Interpreter and Julius to process datasets, visualize results, and create automated reports and dashboards.
+              <div class="chips">
+                <span class="chip">Code Interpreter</span>
+                <span class="chip">Dashboards (TheBricks)</span>
+                <span class="chip">Batch file transforms</span>
+              </div>
+            </div>
+          </details>
+          <details class="module">
+            <summary>Module 3 — GenAI for Research & Text Analysis</summary>
+            <div class="body">
+              Techniques for literature search, text classification, sentiment analysis, knowledge maps, and automated summarization.
+              <div class="chips">
+                <span class="chip">Elicit / LiteRev</span>
+                <span class="chip">Text classification</span>
+                <span class="chip">Summarization pipelines</span>
+              </div>
+            </div>
+          </details>
+          <details class="module">
+            <summary>Module 4 — Custom GPTs & Chatbots</summary>
+            <div class="body">
+              Build research assistants with RAG, Botpress, and knowledge base integration; understand context windows and chat architectures.
+              <div class="chips">
+                <span class="chip">RAG systems</span>
+                <span class="chip">Botpress</span>
+                <span class="chip">Knowledge bases</span>
+              </div>
+            </div>
+          </details>
+          <details class="module">
+            <summary>Module 5 — AI for Task Automation</summary>
+            <div class="body">
+              Practical automations: email response flows, browser control agents, and agent‑based systems for recurring tasks.
+              <div class="chips">
+                <span class="chip">Email automations</span>
+                <span class="chip">Agents for monitoring</span>
+                <span class="chip">Browser control</span>
+              </div>
+            </div>
+          </details>
+          <details class="module">
+            <summary>Module 6 — Communication & Outreach</summary>
+            <div class="body">
+              Create summaries for different audiences, scientific figures, and video abstracts; schedule content and refine prompts for visualization.
+              <div class="chips">
+                <span class="chip">Research summaries</span>
+                <span class="chip">Figures & diagrams</span>
+                <span class="chip">Video abstracts</span>
+              </div>
+            </div>
+          </details>
+          <details class="module">
+            <summary>Module 7 — Capstone Project & Showcase</summary>
+            <div class="body">
+              Build and present a final AI solution or tool, with feedback, peer review, and a public Q&A.
+              <div class="chips">
+                <span class="chip">Peer feedback</span>
+                <span class="chip">Public presentation</span>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <div class="card pad" style="margin-top:16px">
+          <h3 style="margin-top:0">Grading rubric</h3>
+          <div class="rubric">
+            <ul style="margin:0;padding-left:18px">
+              <li>Online quizzes — 15%</li>
+              <li>Workshop assignments — 35%</li>
+            </ul>
+            <ul style="margin:0;padding-left:18px">
+              <li>Attendance & participation — 10%</li>
+              <li>Final project — 40%</li>
+            </ul>
+          </div>
+          <p style="margin-top:10px;color:rgb(var(--muted))">Passing grade: 80%. Attend at least 5 workshops to receive full attendance credit.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WEEKS -->
+    <section id="weeks" aria-labelledby="weeks-title">
+      <div class="container">
+        <p class="section-kicker">Portfolio</p>
+        <h2 class="section-title" id="weeks-title">My weekly submissions</h2>
+        <p class="lead" style="margin:0 0 18px">Placeholders for now — links will be added as each week is completed.</p>
+        <div class="weeks" role="list">
+          <!-- 8‑week grid -->
+          <div class="week" role="listitem" data-week="1">
+            <span class="flag">TOP</span>
+            <h4>Week 1 — Websites & Documents</h4>
+            <p class="muted" style="color:rgb(var(--muted))">Markdown / LaTeX / HTML outputs; research site scaffold.</p>
+            <a class="btn" href="#" aria-disabled="true">Add link soon</a>
+          </div>
+          <div class="week" role="listitem" data-week="2">
+            <h4>Week 2 — Data Analysis</h4>
+            <p class="muted" style="color:rgb(var(--muted))">Quick EDA with Code Interpreter; automated report draft.</p>
+            <a class="btn" href="#" aria-disabled="true">Add link soon</a>
+          </div>
+          <div class="week" role="listitem" data-week="3">
+            <h4>Week 3 — Text Analysis</h4>
+            <p class="muted" style="color:rgb(var(--muted))">Literature pipeline, text classification & summaries.</p>
+            <a class="btn" href="#" aria-disabled="true">Add link soon</a>
+          </div>
+          <div class="week" role="listitem" data-week="4">
+            <h4>Week 4 — Custom GPTs</h4>
+            <p class="muted" style="color:rgb(var(--muted))">Prototype research assistant with RAG.</p>
+            <a class="btn" href="#" aria-disabled="true">Add link soon</a>
+          </div>
+          <div class="week" role="listitem" data-week="5">
+            <h4>Week 5 — Automation</h4>
+            <p class="muted" style="color:rgb(var(--muted))">Email / browser automation experiments.</p>
+            <a class="btn" href="#" aria-disabled="true">Add link soon</a>
+          </div>
+          <div class="week" role="listitem" data-week="6">
+            <h4>Week 6 — Communication</h4>
+            <p class="muted" style="color:rgb(var(--muted))">Figures, diagrams, and video abstract draft.</p>
+            <a class="btn" href="#" aria-disabled="true">Add link soon</a>
+          </div>
+          <div class="week" role="listitem" data-week="7">
+            <h4>Week 7 — Capstone Prep</h4>
+            <p class="muted" style="color:rgb(var(--muted))">Checkpoint & peer feedback notes.</p>
+            <a class="btn" href="#" aria-disabled="true">Add link soon</a>
+          </div>
+          <div class="week" role="listitem" data-week="8">
+            <h4>Week 8 — Showcase</h4>
+            <p class="muted" style="color:rgb(var(--muted))">Slides, demo & public Q&A.</p>
+            <a class="btn" href="#" aria-disabled="true">Add link soon</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> Benjamin Ambühl • One‑page portfolio. No email published here.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Optional: close other module accordions when one opens
+    const modules = document.querySelectorAll('details.module');
+    modules.forEach(m => m.addEventListener('toggle', e => {
+      if(m.open){
+        modules.forEach(o => { if(o!==m) o.removeAttribute('open'); });
+      }
+    }));
+  </script>
+  <script>
+    // Set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Close other module accordions when one opens
+    const modules = document.querySelectorAll('details.module');
+    modules.forEach(m => m.addEventListener('toggle', e => { if(m.open){ modules.forEach(o => { if(o!==m) o.removeAttribute('open'); }); }}));
+
+    // Menu open/close
+    const body = document.body;
+    const openBtn = document.getElementById('openMenu');
+    const closeBtn = document.getElementById('closeMenu');
+    const scrim = document.getElementById('scrim');
+    function openMenu(){ body.classList.add('menu-open'); }
+    function closeMenu(){ body.classList.remove('menu-open'); }
+    window.closeMenu = closeMenu;
+    openBtn && openBtn.addEventListener('click', openMenu);
+    closeBtn && closeBtn.addEventListener('click', closeMenu);
+    scrim && scrim.addEventListener('click', closeMenu);
+
+    // Dark mode toggle (stores preference)
+    const modeToggle = document.getElementById('modeToggle');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const saved = localStorage.getItem('prefers-dark');
+    if(saved === 'true' || (saved===null && prefersDark)) body.classList.add('dark');
+    modeToggle && modeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      localStorage.setItem('prefers-dark', body.classList.contains('dark'));
+    });
+  </script>
+  <script>
+    // Elevate header on scroll
+    (function(){
+      const nav = document.querySelector('.nav');
+      const set = () => { if(!nav) return; if (window.scrollY > 4) nav.classList.add('elevated'); else nav.classList.remove('elevated'); };
+      set();
+      window.addEventListener('scroll', set, { passive: true });
+    })();
+  </script>
+</body>
+</html>
