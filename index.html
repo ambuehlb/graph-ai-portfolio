@@ -195,6 +195,9 @@
     .embed-wrap summary{ cursor:pointer; display:inline-flex; margin-top:10px; }
     .embed{ position:relative; width:100%; height:460px; background:#fff; border:1px solid rgba(0,0,0,.12); border-radius:16px; overflow:hidden; box-shadow:var(--shadow); margin-top:12px }
     .embed iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; background:#fff }
+      /* Project callout inside week tiles */
+    .project{margin:10px 0 12px;padding:12px 14px;border-radius:12px;background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.08)}
+    .project p{margin:6px 0 0}
   </style>
 </head>
 <body>
@@ -425,12 +428,18 @@
           <div class="week" role="listitem" data-week="2">
             <h4>Week 2 — Data Analysis</h4>
             <p class="muted" style="color:rgb(var(--muted))">Quick EDA with Code Interpreter; automated report draft.</p>
+            <div class="project">
+              <strong>Workshop 2: Automated Data Analysis</strong>
+              <p>Analyzed Gapminder data to explore relationships between two global indicators using AI tools.</p>
+            </div>
             <a class="btn" href="https://github.com/ambuehlb/graph-ai-portfolio/blob/main/report.html" target="_blank" rel="noopener">Open full report ↗</a>
             <details class="embed-wrap">
               <summary class="btn" style="margin-top:10px">Preview report</summary>
               <div class="embed">
                 <iframe src="https://raw.githubusercontent.com/ambuehlb/graph-ai-portfolio/main/report.html" loading="lazy" referrerpolicy="no-referrer" sandbox=""></iframe>
               </div>
+            </details>
+          </div>
             </details>
           </div>
           <div class="week" role="listitem" data-week="3">
