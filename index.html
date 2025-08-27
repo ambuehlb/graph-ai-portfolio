@@ -191,6 +191,10 @@
     .hero-avatar .avatar-hex{ width:180px }
     @media (max-width:980px){ .hero-avatar .avatar-hex{ width:140px } }
     .avatar-hex img{ object-position:50% 18% }
+      /* Embedded report preview */
+    .embed-wrap summary{ cursor:pointer; display:inline-flex; margin-top:10px; }
+    .embed{ position:relative; width:100%; height:460px; background:#fff; border:1px solid rgba(0,0,0,.12); border-radius:16px; overflow:hidden; box-shadow:var(--shadow); margin-top:12px }
+    .embed iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; background:#fff }
   </style>
 </head>
 <body>
@@ -421,7 +425,13 @@
           <div class="week" role="listitem" data-week="2">
             <h4>Week 2 — Data Analysis</h4>
             <p class="muted" style="color:rgb(var(--muted))">Quick EDA with Code Interpreter; automated report draft.</p>
-            <a class="btn" href="#" aria-disabled="true">Add link soon</a>
+            <a class="btn" href="https://github.com/ambuehlb/graph-ai-portfolio/blob/main/report.html" target="_blank" rel="noopener">Open full report ↗</a>
+            <details class="embed-wrap">
+              <summary class="btn" style="margin-top:10px">Preview report</summary>
+              <div class="embed">
+                <iframe src="https://raw.githubusercontent.com/ambuehlb/graph-ai-portfolio/main/report.html" loading="lazy" referrerpolicy="no-referrer" sandbox=""></iframe>
+              </div>
+            </details>
           </div>
           <div class="week" role="listitem" data-week="3">
             <h4>Week 3 — Text Analysis</h4>
