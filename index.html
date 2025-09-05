@@ -200,6 +200,15 @@
       /* Project callout inside week tiles */
     .project{margin:10px 0 12px;padding:12px 14px;border-radius:12px;background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.08)}
     .project p{margin:6px 0 0}
+      /* Consistent week colors (attribute-based mapping) */
+    .weeks .week[data-week="1"]{ background: rgb(var(--t6)); }
+    .weeks .week[data-week="2"]{ background: rgb(var(--t1)); }
+    .weeks .week[data-week="3"]{ background: rgb(var(--t3)); }
+    .weeks .week[data-week="4"]{ background: rgb(var(--t2)); }
+    .weeks .week[data-week="5"]{ background: rgb(var(--t5)); }
+    .weeks .week[data-week="6"]{ background: rgb(var(--t8)); }
+    .weeks .week[data-week="7"]{ background: rgb(var(--t7)); }
+    .weeks .week[data-week="8"]{ background: rgb(var(--t4)); }
   </style>
 </head>
 <body>
@@ -427,7 +436,21 @@
             <p class="muted" style="color:rgb(var(--muted))">Markdown / LaTeX / HTML outputs; research site scaffold.</p>
             <a class="btn" href="#" aria-disabled="true">Add link soon</a>
           </div>
-          $1
+          <div class="week" role="listitem" data-week="2">
+            <h4>Week 2 — Data Analysis</h4>
+            <p class="muted" style="color:rgb(var(--muted))">Quick EDA with Code Interpreter; automated report draft.</p>
+            <div class="project">
+              <strong>Workshop 2: Automated Data Analysis</strong>
+              <p>Analyzed Gapminder data to explore relationships between two global indicators using AI tools.</p>
+            </div>
+            <a class="btn" href="https://github.com/ambuehlb/graph-ai-portfolio/blob/main/report.html" target="_blank" rel="noopener">Open full report ↗</a>
+            <details class="embed-wrap">
+              <summary class="btn" style="margin-top:10px">Preview report</summary>
+              <div class="embed">
+                <iframe src="https://raw.githubusercontent.com/ambuehlb/graph-ai-portfolio/main/report.html" loading="lazy" referrerpolicy="no-referrer" sandbox=""></iframe>
+              </div>
+            </details>
+          </div>
           <div class="week tone-lavender" role="listitem" data-week="3">
             <span class="flag">NEWEST</span>
             <h4>Week 3 — Text Analysis</h4>
@@ -444,7 +467,7 @@
               </div>
             </details>
           </div>
-          $2
+          <div class="week" role="listitem" data-week="4">
             <h4>Week 4 — Custom GPTs</h4>
             <p class="muted" style="color:rgb(var(--muted))">Prototype research assistant with RAG.</p>
             <a class="btn" href="#" aria-disabled="true">Add link soon</a>
