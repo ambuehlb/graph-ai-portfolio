@@ -128,6 +128,8 @@
     .weeks .week:nth-child(6){background:rgb(var(--t8))}
     .weeks .week:nth-child(7){background:rgb(var(--t7))}
     .weeks .week:nth-child(8){background:rgb(var(--t4))}
+    /* Week color overrides */
+    .weeks .week.tone-lavender{ background: rgb(var(--t3)); }
 
     /* Footer */
     footer{padding:52px 18px 64px; text-align:center; color:rgb(var(--muted))}
@@ -420,34 +422,29 @@
         <div class="weeks" role="list">
           <!-- 8‑week grid -->
           <div class="week" role="listitem" data-week="1">
-            <span class="flag">TOP</span>
+            
             <h4>Week 1 — Websites & Documents</h4>
             <p class="muted" style="color:rgb(var(--muted))">Markdown / LaTeX / HTML outputs; research site scaffold.</p>
             <a class="btn" href="#" aria-disabled="true">Add link soon</a>
           </div>
-          <div class="week" role="listitem" data-week="2">
-            <h4>Week 2 — Data Analysis</h4>
-            <p class="muted" style="color:rgb(var(--muted))">Quick EDA with Code Interpreter; automated report draft.</p>
+          $1
+          <div class="week tone-lavender" role="listitem" data-week="3">
+            <span class="flag">NEWEST</span>
+            <h4>Week 3 — Text Analysis</h4>
+            <p class="muted" style="color:rgb(var(--muted))">Literature pipeline, text classification & summaries.</p>
             <div class="project">
-              <strong>Workshop 2: Automated Data Analysis</strong>
-              <p>Analyzed Gapminder data to explore relationships between two global indicators using AI tools.</p>
+              <strong>Workshop 3: gen AI for text analysis</strong>
+              <p>Analyzing Job Market Data with LLMs in Sheets and AI Reporting Agents</p>
             </div>
-            <a class="btn" href="https://github.com/ambuehlb/graph-ai-portfolio/blob/main/report.html" target="_blank" rel="noopener">Open full report ↗</a>
+            <a class="btn" href="https://github.com/ambuehlb/graph-ai-portfolio/blob/main/job_postings_report.html" target="_blank" rel="noopener">Open full report ↗</a>
             <details class="embed-wrap">
               <summary class="btn" style="margin-top:10px">Preview report</summary>
               <div class="embed">
-                <iframe src="https://raw.githubusercontent.com/ambuehlb/graph-ai-portfolio/main/report.html" loading="lazy" referrerpolicy="no-referrer" sandbox=""></iframe>
+                <iframe src="https://raw.githubusercontent.com/ambuehlb/graph-ai-portfolio/main/job_postings_report.html" loading="lazy" referrerpolicy="no-referrer" sandbox=""></iframe>
               </div>
             </details>
           </div>
-            </details>
-          </div>
-          <div class="week" role="listitem" data-week="3">
-            <h4>Week 3 — Text Analysis</h4>
-            <p class="muted" style="color:rgb(var(--muted))">Literature pipeline, text classification & summaries.</p>
-            <a class="btn" href="#" aria-disabled="true">Add link soon</a>
-          </div>
-          <div class="week" role="listitem" data-week="4">
+          $2
             <h4>Week 4 — Custom GPTs</h4>
             <p class="muted" style="color:rgb(var(--muted))">Prototype research assistant with RAG.</p>
             <a class="btn" href="#" aria-disabled="true">Add link soon</a>
